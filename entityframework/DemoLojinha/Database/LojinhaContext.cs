@@ -34,7 +34,10 @@ public class LojinhaContext : DbContext
             eb.Property(e => e.Nome).HasMaxLength(30);
             eb.Property(e => e.Descricao).HasMaxLength(200);
         });
-        
-        
+
+        modelBuilder.Entity<Pedido>()
+            .HasMany(pedido => pedido.Produtos)
+            .WithMany(produto => produto.Pedidos)
+            .UsingEntity<Item>();
     }
 }
