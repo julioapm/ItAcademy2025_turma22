@@ -14,7 +14,7 @@ public class ProdutoRepositoryEF : IProdutoRepository
 
     public Task<Produto?> ConsultarPorIdAsync(int id)
     {
-        throw new NotImplementedException();
+        return contexto.Produtos.FindAsync(id).AsTask();
     }
 
     public async Task<IEnumerable<Produto>> ConsultarTodosAsync()
