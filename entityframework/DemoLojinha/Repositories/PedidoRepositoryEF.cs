@@ -23,6 +23,10 @@ public class PedidoRepositoryEF : IPedidoRepository
 
     public Task<Pedido?> ConsultarPorIdAsync(int id)
     {
-        throw new NotImplementedException();
+        return contexto.Pedidos
+            .Where(p => p.Id == id)
+            .Include(p => p.Cliente)
+            .Include(p => p.Produtos)
+            .SingleOrDefaultAsync();
     }
 }
