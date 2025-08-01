@@ -1,5 +1,6 @@
 using DemoLojinha.Database;
 using DemoLojinha.Repositories;
+using DemoLojinha.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,8 @@ builder.Services.AddDbContext<LojinhaContext>(opcoes =>
     opcoes.EnableSensitiveDataLogging().LogTo(Console.WriteLine);
 });
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepositoryEF>();
+builder.Services.AddScoped<IClienteRepository, ClienteRepositoryEF>();
+builder.Services.AddScoped<IPedidoRepository, PedidoRepositoryEF>();
 
 var app = builder.Build();
 
